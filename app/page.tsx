@@ -1,18 +1,20 @@
 "use client";
 
 import {
-  Flex,
   Box,
+  Button,
+  Checkbox,
+  Flex,
   FormControl,
   FormLabel,
-  Input,
-  Checkbox,
-  Stack,
-  Button,
   Heading,
+  Input,
+  Link,
+  Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import Logo from "./components/logo";
 
 export default function LoginPage() {
   return (
@@ -22,7 +24,8 @@ export default function LoginPage() {
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={6} px={6}>
+        <Logo />
         <Stack align={"center"}>
           <Heading fontSize={"4xl"}>Sign in to your account</Heading>
         </Stack>
@@ -41,11 +44,12 @@ export default function LoginPage() {
               <FormLabel>Password</FormLabel>
               <Input type="password" />
             </FormControl>
-            <Stack spacing={10}>
+            <Stack spacing={4}>
               <Stack
                 direction={{ base: "column", sm: "row" }}
                 align={"start"}
                 justify={"space-between"}
+                paddingBottom={4}
               >
                 <Checkbox>Remember me</Checkbox>
                 <Text color={"blue.400"}>Forgot password?</Text>
@@ -59,6 +63,12 @@ export default function LoginPage() {
               >
                 Sign in
               </Button>
+              <Link
+                href="/signup"
+                className="text-center opacity-60 hover:opacity-90"
+              >
+                Create new account
+              </Link>
             </Stack>
           </Stack>
         </Box>
