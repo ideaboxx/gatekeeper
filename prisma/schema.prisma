@@ -10,38 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
-model Key {
-  id         String    @id @default(uuid())
-  value      Json
-  name       String
-  icon       String
-  UserKey    UserKey[]
-  createdAt  DateTime  @default(now())
-  modifiedAt DateTime  @updatedAt
+model Config {
+  key   String @id
+  value String
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  name      String?
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
   password  String
-  UserKey   UserKey[]
-  createdAt DateTime  @default(now())
+  key       Json
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  Logs      Logs[]
 }
 
-model UserKey {
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
-
-  key   Key    @relation(fields: [keyId], references: [id])
-  keyId String
-
-  role Role @default(USER)
-
-  @@id([userId, keyId])
+model Logs {
+  id        String   @id @default(uuid())
+  ip        String
+  user      User     @relation(fields: [uid], references: [id])
+  uid       String
+  createdAt DateTime @default(now())
 }

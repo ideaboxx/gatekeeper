@@ -1,13 +1,20 @@
-import "./globals.css";
-import { Providers } from "@/lib/providers";
-import { ReactNode } from "react";
+import { cn } from "@/lib/utils"
+import "@/styles/globals.css"
+import { Inter as FontSans } from "next/font/google"
+import React from "react"
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en">
-      <body className="bg-slate-800">
-        <Providers>{children}</Providers>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className={cn("dark h-screen bg-background font-sans antialiased",fontSans.variable)}>
+        {children}
       </body>
     </html>
-  );
+  )
 }

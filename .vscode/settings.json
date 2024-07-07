@@ -5,5 +5,8 @@
     "source.fixAll": "always"
   },
   "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 2000
+  "files.autoSaveDelay": 2000,
+  "editor.formatOnSave": true,
+  "editor.wordWrapColumn": 100,
+  "prettier.printWidth": 100
 }
